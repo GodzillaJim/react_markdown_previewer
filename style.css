@@ -25,6 +25,7 @@ h1, p {
     margin:0px;
     padding: 0px;
     width:50%;
+    font-family: consolas, monospace;
   }
   .contain{
     margin:0px;
@@ -32,8 +33,9 @@ h1, p {
   }
   #editor{
     background-color: black;
-    color:white;
+    color:grey;
   }
   #preview{
     background-color: darkslategrey;
+    color:white;
   }
