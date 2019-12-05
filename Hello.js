@@ -12,6 +12,7 @@ class Body extends React.Component{
       originalText : ""
     }
   }
+  
   render(){
     return (
       <div>
@@ -23,7 +24,7 @@ class Body extends React.Component{
           </div>
            <div className="col  contain">
             <label for="editor" className="form-label">Preview:</label>
-            <textarea style={{backgroundColor:" darkslategrey"}}className=" form-control"></textarea>
+            <textarea style={{backgroundColor:" darkslategrey"}}className="form-control"></textarea>
           </div>
         </div>
         </div>
