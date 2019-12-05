@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
+import Body from './Hello';
 import './style.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React'
+      name: 'Batman'
     };
   }
 
   render() {
     return (
-      <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
-      </div>
+      <div></div>
     );
   }
 }
-
 render(<App />, document.getElementById('root'));
