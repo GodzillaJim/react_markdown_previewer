@@ -1,3 +1,39 @@
 h1, p {
   font-family: Lato;
 }
+.form-class{
+  border: 2.5px inset grey;
+  width:auto;
+  display: flexbox;
+  justify-content: center;
+  padding: 0px;
+  border-radius: 15px;
+}
+.form-label{
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  color:#356896;
+  font-size: 20px;
+}
+.form-control{
+  min-height: 600px;
+  max-height: 80vh;
+  margin: 0px;
+  border: 1px inset #356896;
+  border-radius: 15px;
+  }
+  textarea{
+    margin:0px;
+    padding: 0px;
+    width:50%;
+  }
+  .contain{
+    margin:0px;
+    padding:8px;
+  }
+  #editor{
+    background-color: black;
+    color:white;
+  }
+  #preview{
+    background-color: darkslategrey;
+  }
