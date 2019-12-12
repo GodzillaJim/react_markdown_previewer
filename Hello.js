@@ -12,24 +12,66 @@ import $ from 'jquery';
 class Body extends React.Component{
   constructor(props){
     super(props);
-    let init = "A man who says I am king is not true king.";
+    const converter = new showdown.Converter();
+    let init = `
+      #Welcome to my markdown previewer
+##It's pretty simple, just type in markdown and you get HTML
+You can add links like this
+    [links](https://www.jimna.dx.am)
+You can use some inline code, \`<div></div>\`, between 2 backticks.
+
+Or you can choose to use a block of code:
+   
+\`\`\`
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+There are lists too:
+  - And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbered lists too.
+1. Use just 1s if you want! 
+1. But the list goes on...
+
+You can add quotes like what Ramsy Bolton said the other day:
+\>If you think this has a happy ending for you, you haven't been paying attention.
+
+Now put the names Ramsey Bolton in bold:
+  **Ramsey Bolton**
+And then there is an image
+  ![React Logo w/ Text](https://www.shutterstock.com/image-vector/web-line-icon-silhouette-cats-cat-404924038)
+    `;
     this.state = {
-      originalText : "##Kenya",
-      finalText:"",
+      originalText : init,
+      finalText:converter.makeHtml("##Kenya"),
       temp:init
     };
     this.handleUpdate = this.handleUpdate.bind(this);
+   
   }
  handleUpdate = () => {
-   let temp = document.getElementById("editor").value;
-    this.setState({originalText:temp});
-    let converter = new showdown.Converter();
-    this.setState({finalText:converter.makeHtml(this.state.originalText)});
-    document.getElementById("preview").innerHTML = this.state.finalText;
+   let markdown = document.getElementById('editor').value;
+   const converter = new showdown.Converter();
+   
+   this.setState({
+     originalText:markdown,
+     finalText:converter.makeHtml(markdown)
+   });
+   document.getElementById('preview').innerHTML = converter.makeHtml(markdown);
+ }
+ updatePreview =() =>{
+   
  }
  componentDidMount(){
-   this.handleUpdate;
- }
+
+  }
   render(){
     return (
       <div>
@@ -41,7 +83,7 @@ class Body extends React.Component{
           </div>
            <div className="col  contain">
             <label for="editor" className="form-label">Preview:</label>
-            <div id="preview" style={{backgroundColor:" darkslategrey",color:"red"}}className="form-control"></div>
+            <textarea id="preview" style={{backgroundColor:" darkslategrey",color:"red"}}className="form-control" value={this.state.finalText}> </textarea>
           </div>
         </div>
         </div>
