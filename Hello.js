@@ -8,7 +8,11 @@ import './style.css';
 const showdown = require('showdown');
 import $ from 'jquery';
 import marked from 'marked';
-
+showdown.setOption({'omitExtraWLInCodeBlocks':true});
+showdown.setOption({'noHeaderId':true});
+showdown.setOption({'strikethrough':true});
+showdown.setOption({'tables':true});
+showdown.setOption({'smartIndentationFix':true});
 
 
 class Body extends React.Component{
@@ -17,13 +21,15 @@ class Body extends React.Component{
     const converter = new showdown.Converter();
     marked.setOptions({
     breaks: true,
+    headerIds:false,
     sanitize: true,
-    smartLists: true,
-    smartypants: true,
-    xhtml: true
+    smartLists: false,
+    smartypants: false,
+    xhtml: false,
+    gfm:true
 });
-    let init = `#Welcome to my markdown previewer
-\n##It's pretty simple, just type in markdown and you get HTML
+    let init = `# Welcome to my markdown previewer
+\n## It is pretty simple, just type in markdown and you get HTML
 You can add links like this
     [links](https://www.jimna.dx.am)
 You can use some inline code, \`<div></div>\`, between 2 backticks.
@@ -49,7 +55,7 @@ There are lists too:
 1. But the list goes on...
 
 You can add quotes like what Ramsy Bolton said the other day:
-\>If you think this has a happy ending for you, you haven't been paying attention.
+> If you think this has a happy ending for you, you haven't been paying attention.
 
 Now put the names Ramsey Bolton in bold:
   **Ramsey Bolton**
@@ -61,7 +67,7 @@ And then there is an image
 
     this.state = {
       originalText : init,
-      finalText:converter.makeHtml(init),
+      finalText:marked(init),
       temp:init
     };
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -73,9 +79,9 @@ And then there is an image
    
    this.setState({
      originalText:markdown,
-     finalText:converter.makeHtml(markdown)
+     finalText:marked(markdown)
    });
-   document.getElementById('preview').innerHTML = converter.makeHtml(markdown);
+   document.getElementById('preview').innerHTML = marked(markdown);
  }
  componentDidMount(){
     document.getElementById('preview').innerHTML = this.state.finalText;
