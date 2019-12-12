@@ -50,7 +50,7 @@ And then there is an image
     `;
     this.state = {
       originalText : init,
-      finalText:converter.makeHtml("##Kenya"),
+      finalText:converter.makeHtml(init),
       temp:init
     };
     this.handleUpdate = this.handleUpdate.bind(this);
