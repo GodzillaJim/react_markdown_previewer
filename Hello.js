@@ -14,7 +14,7 @@ class Body extends React.Component{
     super(props);
     const converter = new showdown.Converter();
     let init = `
-      #Welcome to my markdown previewer
+#Welcome to my markdown previewer
 ##It's pretty simple, just type in markdown and you get HTML
 You can add links like this
     [links](https://www.jimna.dx.am)
@@ -66,11 +66,8 @@ And then there is an image
    });
    document.getElementById('preview').innerHTML = converter.makeHtml(markdown);
  }
- updatePreview =() =>{
-   
- }
  componentDidMount(){
-
+    document.getElementById('preview').innerHTML = this.state.finalText;
   }
   render(){
     return (
@@ -83,7 +80,7 @@ And then there is an image
           </div>
            <div className="col  contain">
             <label for="editor" className="form-label">Preview:</label>
-            <textarea id="preview" style={{backgroundColor:" darkslategrey",color:"red"}}className="form-control" value={this.state.finalText}> </textarea>
+            <div id="preview" style={{backgroundColor:" darkslategrey",color:"white"}} className="form-control"></div>
           </div>
         </div>
         </div>
