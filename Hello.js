@@ -7,15 +7,23 @@ import rasterizeHTML from 'rasterizehtml';
 import './style.css';
 const showdown = require('showdown');
 import $ from 'jquery';
+import marked from 'marked';
+
 
 
 class Body extends React.Component{
   constructor(props){
     super(props);
     const converter = new showdown.Converter();
-    let init = `
-#Welcome to my markdown previewer
-##It's pretty simple, just type in markdown and you get HTML
+    marked.setOptions({
+    breaks: true,
+    sanitize: true,
+    smartLists: true,
+    smartypants: true,
+    xhtml: true
+});
+    let init = `#Welcome to my markdown previewer
+\n##It's pretty simple, just type in markdown and you get HTML
 You can add links like this
     [links](https://www.jimna.dx.am)
 You can use some inline code, \`<div></div>\`, between 2 backticks.
@@ -48,6 +56,9 @@ Now put the names Ramsey Bolton in bold:
 And then there is an image
   ![React Logo w/ Text](https://www.shutterstock.com/image-vector/web-line-icon-silhouette-cats-cat-404924038)
     `;
+    let converter = new showdown.Converter();
+
+
     this.state = {
       originalText : init,
       finalText:converter.makeHtml(init),
@@ -80,7 +91,7 @@ And then there is an image
           </div>
            <div className="col  contain">
             <label for="editor" className="form-label">Preview:</label>
-            <div id="preview" style={{backgroundColor:" darkslategrey",color:"white"}} className="form-control"></div>
+            <div id="preview" style={{backgroundColor:" darkslategrey",color:"white",overflow:"scroll"}} className="form-control"></div>
           </div>
         </div>
         </div>
